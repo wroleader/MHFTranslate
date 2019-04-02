@@ -20,6 +20,9 @@ available below.
 ## Authors
 * Mikhail Tzenkov (MikkyTzen)
 
+## Pre-compiled binaries
+Under Construction
+
 ## Acknowledgements:
 * StackOverflow
 * Friends who supported this project
