@@ -21,5 +21,5 @@ available below.
 * Mikhail Tzenkov (MikkyTzen)
 
 ## Acknowledgements:
-
-StackOverflow
+* StackOverflow
+* Friends who supported this project
