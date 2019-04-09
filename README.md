@@ -30,7 +30,7 @@ To use MHFTranslate, make sure the game is open and that you've spent enough tim
 
 
 ## Pre-compiled binaries
-
+To get a pre-compiled binary that you can start using right away, visit our [Releases](https://github.com/wroleader/MHFTranslate/releases) page.
 
 ## Acknowledgements:
 * StackOverflow
