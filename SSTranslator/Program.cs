@@ -21,9 +21,11 @@ namespace SSTranslator
         public static string ExeLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public static string TranslateTargetLanguage = "";
 
-        const string GApi = "";
+        public static string GApi = "";
+
+
+ 
         /*
-        
         TranslateService service = new TranslateService(new BaseClientService.Initializer()
         {
             ApiKey = "", //Google API Key
@@ -63,9 +65,11 @@ namespace SSTranslator
 
                     Console.WriteLine("Type out the language code for what you'd like the chat to be translated to.\n" +
                                       "Type 'list' to get a list of languages. Setting will be saved in config file.\n" +
-                                      "To change configuration settings, modify or delete translateConfig.txt in this program's folder.\n\n");
+                                      "To change configuration settings, modify or delete translateConfig.txt in this program's folder.\n\n" +
+                                      "Common languages: 'en' - English | 'es' - Spanish | 'pt' - Portuguese\n");
 
                     Console.Write("Please select your language: ");
+
                     TranslateTargetLanguage = Console.ReadLine();
 
                     if (string.IsNullOrWhiteSpace(TranslateTargetLanguage))
@@ -84,11 +88,10 @@ namespace SSTranslator
                         _colorify.AlignCenter("Language: " + TranslateTargetLanguage, Colors.bgSuccess);
                         _colorify.AlignCenter("Log folder: " + logfolder, Colors.bgSuccess);
                         System.Threading.Thread.Sleep(3000);
-                        startTranslation(logfolder, TranslateTargetLanguage);
+                        StartTranslation(logfolder, TranslateTargetLanguage);
                     }
                     else if (TranslateTargetLanguage == "list")
                     {
-
                         _colorify.AlignCenter("Afrikaans: af | Albanian: sq | Arabic: ar | Azerbaijani: az | Basque: eu", Colors.bgInfo);
                         _colorify.AlignCenter("Bengali: bn | Belarusian: be | Bulgarian: bg | Catalan: ca | Simpl. Chinese: zh-CN", Colors.bgInfo);
                         _colorify.AlignCenter("Tradit. Chinese: zh-TW | Croatian: hr | Czech: cs | Danish: da | Dutch: nl", Colors.bgInfo);
@@ -118,7 +121,7 @@ namespace SSTranslator
                         _colorify.AlignCenter("Language: " + TranslateTargetLanguage, Colors.bgSuccess);
                         _colorify.AlignCenter("Log folder: " + logfolder, Colors.bgSuccess);
                         System.Threading.Thread.Sleep(3000);
-                        startTranslation(logfolder, TranslateTargetLanguage);
+                        StartTranslation(logfolder, TranslateTargetLanguage);
                     }
                     else
                     {
@@ -135,14 +138,14 @@ namespace SSTranslator
                         _colorify.AlignCenter("Language: " + TranslateTargetLanguage, Colors.bgSuccess);
                         _colorify.AlignCenter("Log folder: " + logfolder, Colors.bgSuccess);
                         System.Threading.Thread.Sleep(3000);
-                        startTranslation(logfolder, TranslateTargetLanguage);
+                        StartTranslation(logfolder, TranslateTargetLanguage);
                     }
                 }
                 else
                 {
                     _colorify.Clear();
                     _colorify.WriteLine("Folder selection failed.\n ERR-CODE: SELECTION_CANCELLED_OR_ABORTED", Colors.txtWarning);
-                    showQuestFailure();
+                    ShowQuestFailure();
                     _colorify.WriteLine("Configurations not saved.", Colors.bgWarning);
                     if (File.Exists(ExeLocation + "\\translateConfig.txt"))
                     {
@@ -161,14 +164,14 @@ namespace SSTranslator
                 _colorify.WriteLine("Configured language: " + TranslateTargetLanguage);
                 System.Threading.Thread.Sleep(3000);
                 _colorify.Clear();
-                startTranslation(logfolder, TranslateTargetLanguage);
+                StartTranslation(logfolder, TranslateTargetLanguage);
             }
             Console.ReadKey();
             _colorify.ResetColor();
             _colorify.Clear();
         }
 
-        static void showQuestFailure()
+        static void ShowQuestFailure()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(".......................,:....:..................................................\n....................,::...,:..:,................................................\n..................:... ..ZZZ~. ,,...............................................\n................:....?Z7.,ZZZ=..,,...........................:....:,............\n..............,....7ZZ,$Z..ZZZ~..,,.......................,:....~...:...........\n.............:. .ZZZZZZZZZ~.ZZZ$..,,....................,,...,ZZZI....:.........\n............:.....Z$?ZZZ,ZZ?.ZZZ?...,.................,:....$ZZZZ~.:...:........\n...........,..+ZZ:.?ZZZZZ,7$..$ZZ?...,..............:....~ZZZZZ~.7ZZZ...:.......\n...........,..~ZZZ?.~,:ZZ$..:=.+ZZ?...,...........:,...=ZZZZZ,.+ZZ$.ZZ.. :......\n............: ..ZZZZ.:ZZ:.~ZZZ..:ZZ$...:........,,...7ZZZZZ:.$ZZ?~ZZZZZ?..:,....\n.............:...+ZZZ,...$ZZ7~ZZ.,ZZZ...:.....,:...~ZZZZ$..=.+?=ZZZZ=~$,~..:....\n..............,:..,ZZZ+.=Z,ZZZZZ..,ZZZ...:...:...~ZZZZ$..7,ZZ,~ZZ?=ZZ.?ZZ..,....\n................:..........,,+?~ZZ+.ZZZ,..,,....ZZZZ$...ZZZIZZ~.$Z~.IZZZZ.......\n..............,:....:ZI....... ...........:~..ZZZZI..ZZ$.ZZZZ.ZZ..ZZZZ$,...:....\n.............,....7Z=.7ZI....,,....:........ .........ZZZZ$,ZZ~.7ZZZZ~...,,.....\n.............:..$ZZ,...?ZZ,..Z,....ZZ$:ZZ7,~,==7,..............~II$+...,,.......\n.............:..ZZ...I.,ZZ..?Z....,ZZ:=ZZ, .+ZZZ,...IZZZZ.$ZI~,......,,.........\n.............:..+ZZ:.,ZZZ: .ZZ....:ZZ.+Z7$?,...,.$$:.....,==?$$$$$..:...........\n.............,....=Z:Z+ZZ,.?Z$....,Z,.~Z,$ZZZ$,....$Z=.......7......,...........\n.............,,:,...,..,Z~.?ZZZZZZZ7..7$............,ZZZ+....Z...,,.............\n...........,.............. ..,........=.?ZZZZZZ=....:?ZZZ...+Z...,..............\n...........:..$I............................,?Z,+IZZZZZZZ...ZZ:..,..............\n...........:..ZZZ7ZZZZZ7...+.... ..........................:ZZ~..,..............\n...........:..ZZ7...~ZZ+..ZZ....ZZZZ..=7Z.......................,...............\n...........~..ZZ.ZZZ$,...ZZZ7...ZZZI.7ZZ~.......ZZ7.~++II,.......:,.............\n..........,:..Z:,ZI,....?...,...ZZZ..?ZZ........ZZ...=ZZZ,$ZZ.Z=...:............\n..........,,.:+...... +ZZ..~Z=..ZZ:..IZ~........Z$7$:. .,.=ZZ.~Z$.. ,,..........\n........,:.. ,.......7ZZZ+IZZZ..ZZ.. +$..... ...Z.$ZZ$7+..:Z=..ZZZ=...,.........\n......,:....??~:...........,:I+.7,...I.,+7ZZZZ..7......,. ,Z,..ZZZZ7..,.........\n.....:....$ZZZZ~.$Z?+ZZZZ:...............:?$$Z:,,=ZZZZZZ=..Z..ZZZ=...:..........\n....:...~ZZZZ=..Z=~ZZZ~~ZZ..,ZZZZ. ::................,$Z~..Z.~Z?.. .:...........\n...:..=ZZZZ~.ZZ,:ZZZZZZ~,.:ZZZZ=...:.:..7ZZ,,Z$7,:,..............,:.............\n...:..ZZ$:?Z7,ZZ=.ZZ:=,.:ZZZZ7...,,..,...7ZZ~..=ZZZZ?$$.,ZZZ~...~...............\n...,..:,=+~ZZZZZ:7.I:.+ZZZZZ,...:.....,,..7ZZ~.?Z$:ZZZ:...ZZZ7...:..............\n....:...ZZZZZ$~ZZZ..=ZZZZZ:...:,.......,,..~ZZ=..IZZ7..IZ~.IZZZ,..:,............\n.....:...ZZ=+ZZZ,.7ZZZZZ... :,..........,,..=ZZ$.,$..~ZZ$.~.~ZZZ?..,............\n......:...ZZZZ~.IZZZZ7.. .:,.............,,..~ZZZ...Z~ZZZZZZ.:ZZZ..:............\n.......,...~:.7ZZZZI....:,................,:..~ZZZ..ZZ?IZZ7,$..~. .:............\n........:....7ZZZ?....:,....................:..:ZZZ.,Z$$ZZZZZZ....,.............\n..........,:..I+....:........................,..:ZZZ:.ZZ~?ZZI...:...............\n............: ...,,...........................:..,ZZZ~.~ZZ:...,:................\n..............,,...............................:..:ZZZ:.....,,..................\n................................................: ..7....,:,....................\n.................................................: ....:,.......................\n....................................................,...........................\n");
@@ -176,7 +179,7 @@ namespace SSTranslator
             Console.WriteLine("Press any key or CTRL+C to terminate the program.");
         }
 
-        static void startTranslation(string mhflogs, string targetlang)
+        static void StartTranslation(string mhflogs, string targetlang)
         { 
             //This is where we begin translations.
             //We prepare a translation client, which we will create from our Google API Key.
@@ -194,8 +197,6 @@ namespace SSTranslator
             string pathToLog = mhLogFolder + "\\" + lastLog;
 
             //pathToLog includes both the folder & .txt
-
-            //ToDo: Read log, store it in memory, translate line by line. Is this the right way?
            
             foreach (string line in TailFrom(pathToLog))
             {
