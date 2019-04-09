@@ -21,7 +21,7 @@ namespace SSTranslator
         public static string ExeLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public static string TranslateTargetLanguage = "";
 
-        public static string GApi = "";
+        public static string GApi = "YOUR-API-KEY";
 
 
  
@@ -58,6 +58,17 @@ namespace SSTranslator
 
                 _colorify.WriteLine("New configuration file created at: " + ExeLocation + "\\translateConfig.txt", Colors.bgSuccess);
 
+                _colorify.WriteLine("WARNING: This program REQUIRES a Google Cloud Services API Key.", Colors.bgDanger);
+                _colorify.WriteLine("If you don't have one, check GitHub for instructions on how to get your own.", Colors.bgDanger);
+
+                _colorify.WriteLine("Type or paste your Google Cloud Services API key now. Make sure there are no spaces or blanks: ");
+                _colorify.WriteLine("An invalid API key will crash the program!");
+                GApi = Console.ReadLine();
+                _colorify.Clear();
+                
+                _colorify.AlignCenter("Continuing Configuration...", Colors.bgInfo);
+
+                _colorify.WriteLine("Please select your Monster Hunter Frontier log folder.", Colors.bgWarning);
                 if (browsefolder.ShowDialog() == DialogResult.OK)
                 {
                     logfolder = browsefolder.SelectedPath;
@@ -78,15 +89,15 @@ namespace SSTranslator
                         using (StreamWriter sw = File.CreateText(ExeLocation + "\\translateConfig.txt"))
                         {
                             sw.WriteLine(logfolder);
-                            Console.WriteLine("Writing: " + logfolder);
                             sw.WriteLine(TranslateTargetLanguage);
-                            Console.WriteLine("Writing: " + TranslateTargetLanguage);
+                            sw.WriteLine(GApi);
                             sw.Flush();
                             sw.Close();
                         }
                         _colorify.AlignCenter("Configuration Complete", Colors.bgSuccess);
                         _colorify.AlignCenter("Language: " + TranslateTargetLanguage, Colors.bgSuccess);
                         _colorify.AlignCenter("Log folder: " + logfolder, Colors.bgSuccess);
+                        _colorify.AlignCenter("API Key: " + GApi, Colors.bgSuccess);
                         System.Threading.Thread.Sleep(3000);
                         StartTranslation(logfolder, TranslateTargetLanguage);
                     }
@@ -113,6 +124,7 @@ namespace SSTranslator
                         {
                             sw.WriteLine(logfolder);
                             sw.WriteLine(TranslateTargetLanguage);
+                            sw.WriteLine(GApi);
                             sw.Flush();
                             sw.Close();
                         }
@@ -128,9 +140,8 @@ namespace SSTranslator
                         using (StreamWriter sw = File.CreateText(ExeLocation + "\\translateConfig.txt"))
                         {
                             sw.WriteLine(logfolder);
-                            Console.WriteLine("Writing: " + logfolder);
                             sw.WriteLine(TranslateTargetLanguage);
-                            Console.WriteLine("Writing: " + TranslateTargetLanguage);
+                            sw.WriteLine(GApi);
                             sw.Flush();
                             sw.Close();
                         }
@@ -162,6 +173,8 @@ namespace SSTranslator
                 _colorify.WriteLine("\nLog folder at: " + logfolder);
                 TranslateTargetLanguage = lines[1];
                 _colorify.WriteLine("Configured language: " + TranslateTargetLanguage);
+                GApi = lines[2];
+                _colorify.WriteLine("Google Cloud Services API: " + GApi);
                 System.Threading.Thread.Sleep(3000);
                 _colorify.Clear();
                 StartTranslation(logfolder, TranslateTargetLanguage);
