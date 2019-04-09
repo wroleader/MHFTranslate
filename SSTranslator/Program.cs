@@ -84,7 +84,12 @@ namespace SSTranslator
                         SourceLanguage = "zh-TW";
                     }
 
-                    Console.WriteLine("Type out the language code for what you'd like the chat to be translated to.\n" +
+                    if (SourceLanguage == "jp")
+                    {
+                        SourceLanguage = "ja";
+                    }
+
+                    Console.WriteLine("\nType out the language code for what you'd like the chat to be translated to.\n" +
                                       "Type 'list' to get a list of languages. Setting will be saved in config file.\n" +
                                       "To change configuration settings, modify or delete translateConfig.txt in this program's folder.\n\n" +
                                       "Common languages: 'en' - English | 'es' - Spanish | 'pt' - Portuguese\n");
