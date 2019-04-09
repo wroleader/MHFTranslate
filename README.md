@@ -17,7 +17,7 @@ Newtonsoft.Json
 Everything else is pretty self-explanatory. To use this software you need your own Google Cloud Services API key.
 
 ## Usage
-To use MHFTranslate, make sure the game is open and that you've spent enough time in a lobby for a log to be written. Then, open the program and it will start reading & translating automatically.
+To use MHFTranslate, make sure the game is open and that you've spent enough time in a lobby for a log to be written. Then, open the program and it will start reading & translating automatically. It currently requires to be running in a separate window, although an overlay will be considered for Version 2 if it gathers enough interest.
 
 ## Author
 * Mikhail Tzenkov (MikkyTzen)
