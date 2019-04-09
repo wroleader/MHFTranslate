@@ -19,6 +19,7 @@ namespace SSTranslator
     {
         public static Format _colorify { get; set; }
         public static string ExeLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public static string SourceLanguage = "";
         public static string TranslateTargetLanguage = "";
 
         public static string GApi = "YOUR-API-KEY";
@@ -74,6 +75,9 @@ namespace SSTranslator
                     logfolder = browsefolder.SelectedPath;
                     _colorify.WriteLine("\nSelected folder is: " + logfolder, Colors.bgSuccess);
 
+                    Console.Write("Please select your game's language.\nType jp for Japanese, or tw for Taiwanese: ");
+                    SourceLanguage = Console.ReadLine();
+
                     Console.WriteLine("Type out the language code for what you'd like the chat to be translated to.\n" +
                                       "Type 'list' to get a list of languages. Setting will be saved in config file.\n" +
                                       "To change configuration settings, modify or delete translateConfig.txt in this program's folder.\n\n" +
@@ -91,6 +95,7 @@ namespace SSTranslator
                             sw.WriteLine(logfolder);
                             sw.WriteLine(TranslateTargetLanguage);
                             sw.WriteLine(GApi);
+                            sw.WriteLine(SourceLanguage);
                             sw.Flush();
                             sw.Close();
                         }
@@ -99,7 +104,7 @@ namespace SSTranslator
                         _colorify.AlignCenter("Log folder: " + logfolder, Colors.bgSuccess);
                         _colorify.AlignCenter("API Key: " + GApi, Colors.bgSuccess);
                         System.Threading.Thread.Sleep(3000);
-                        StartTranslation(logfolder, TranslateTargetLanguage);
+                        StartTranslation(logfolder, TranslateTargetLanguage, SourceLanguage);
                     }
                     else if (TranslateTargetLanguage == "list")
                     {
@@ -125,6 +130,7 @@ namespace SSTranslator
                             sw.WriteLine(logfolder);
                             sw.WriteLine(TranslateTargetLanguage);
                             sw.WriteLine(GApi);
+                            sw.WriteLine(SourceLanguage);
                             sw.Flush();
                             sw.Close();
                         }
@@ -133,7 +139,7 @@ namespace SSTranslator
                         _colorify.AlignCenter("Language: " + TranslateTargetLanguage, Colors.bgSuccess);
                         _colorify.AlignCenter("Log folder: " + logfolder, Colors.bgSuccess);
                         System.Threading.Thread.Sleep(3000);
-                        StartTranslation(logfolder, TranslateTargetLanguage);
+                        StartTranslation(logfolder, TranslateTargetLanguage, SourceLanguage);
                     }
                     else
                     {
@@ -142,6 +148,7 @@ namespace SSTranslator
                             sw.WriteLine(logfolder);
                             sw.WriteLine(TranslateTargetLanguage);
                             sw.WriteLine(GApi);
+                            sw.WriteLine(SourceLanguage);
                             sw.Flush();
                             sw.Close();
                         }
@@ -149,7 +156,7 @@ namespace SSTranslator
                         _colorify.AlignCenter("Language: " + TranslateTargetLanguage, Colors.bgSuccess);
                         _colorify.AlignCenter("Log folder: " + logfolder, Colors.bgSuccess);
                         System.Threading.Thread.Sleep(3000);
-                        StartTranslation(logfolder, TranslateTargetLanguage);
+                        StartTranslation(logfolder, TranslateTargetLanguage, SourceLanguage);
                     }
                 }
                 else
@@ -175,9 +182,11 @@ namespace SSTranslator
                 _colorify.WriteLine("Configured language: " + TranslateTargetLanguage);
                 GApi = lines[2];
                 _colorify.WriteLine("Google Cloud Services API: " + GApi);
+                SourceLanguage = lines[3];
+                _colorify.WriteLine("Game language: " + SourceLanguage);
                 System.Threading.Thread.Sleep(3000);
                 _colorify.Clear();
-                StartTranslation(logfolder, TranslateTargetLanguage);
+                StartTranslation(logfolder, TranslateTargetLanguage, SourceLanguage);
             }
             Console.ReadKey();
             _colorify.ResetColor();
@@ -192,7 +201,7 @@ namespace SSTranslator
             Console.WriteLine("Press any key or CTRL+C to terminate the program.");
         }
 
-        static void StartTranslation(string mhflogs, string targetlang)
+        static void StartTranslation(string mhflogs, string targetlang, string sourcelang)
         { 
             //This is where we begin translations.
             //We prepare a translation client, which we will create from our Google API Key.
@@ -215,7 +224,7 @@ namespace SSTranslator
             {
                 if (!String.IsNullOrWhiteSpace(line))
                 {
-                    TranslationResult result = gTranslate.TranslateText(line, targetlang, LanguageCodes.Japanese);
+                    TranslationResult result = gTranslate.TranslateText(line, targetlang, sourcelang);
                     if (line.Contains("SYSTEM"))
                     {
                         _colorify.WriteLine(result.TranslatedText, Colors.txtWarning);
