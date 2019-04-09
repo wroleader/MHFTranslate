@@ -12,6 +12,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Google.Cloud.Translation.V2;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace SSTranslator
 {
@@ -75,8 +76,13 @@ namespace SSTranslator
                     logfolder = browsefolder.SelectedPath;
                     _colorify.WriteLine("\nSelected folder is: " + logfolder, Colors.bgSuccess);
 
-                    Console.Write("Please select your game's language.\nType jp for Japanese, or tw for Taiwanese: ");
+                    Console.Write("Please select your game's region.\nType jp for Japanese, or tw for Taiwanese: ");
                     SourceLanguage = Console.ReadLine();
+
+                    if (SourceLanguage == "tw")
+                    {
+                        SourceLanguage = "zh-TW";
+                    }
 
                     Console.WriteLine("Type out the language code for what you'd like the chat to be translated to.\n" +
                                       "Type 'list' to get a list of languages. Setting will be saved in config file.\n" +
@@ -101,6 +107,7 @@ namespace SSTranslator
                         }
                         _colorify.AlignCenter("Configuration Complete", Colors.bgSuccess);
                         _colorify.AlignCenter("Language: " + TranslateTargetLanguage, Colors.bgSuccess);
+                        _colorify.AlignCenter("Game region: " + SourceLanguage, Colors.bgSuccess);
                         _colorify.AlignCenter("Log folder: " + logfolder, Colors.bgSuccess);
                         _colorify.AlignCenter("API Key: " + GApi, Colors.bgSuccess);
                         System.Threading.Thread.Sleep(3000);
@@ -137,6 +144,7 @@ namespace SSTranslator
 
                         _colorify.AlignCenter("Configuration Complete", Colors.bgSuccess);
                         _colorify.AlignCenter("Language: " + TranslateTargetLanguage, Colors.bgSuccess);
+                        _colorify.AlignCenter("Game region: " + SourceLanguage, Colors.bgSuccess);
                         _colorify.AlignCenter("Log folder: " + logfolder, Colors.bgSuccess);
                         System.Threading.Thread.Sleep(3000);
                         StartTranslation(logfolder, TranslateTargetLanguage, SourceLanguage);
@@ -154,6 +162,7 @@ namespace SSTranslator
                         }
                         _colorify.AlignCenter("Configuration Complete", Colors.bgSuccess);
                         _colorify.AlignCenter("Language: " + TranslateTargetLanguage, Colors.bgSuccess);
+                        _colorify.AlignCenter("Game region: " + SourceLanguage, Colors.bgSuccess);
                         _colorify.AlignCenter("Log folder: " + logfolder, Colors.bgSuccess);
                         System.Threading.Thread.Sleep(3000);
                         StartTranslation(logfolder, TranslateTargetLanguage, SourceLanguage);
@@ -183,7 +192,7 @@ namespace SSTranslator
                 GApi = lines[2];
                 _colorify.WriteLine("Google Cloud Services API: " + GApi);
                 SourceLanguage = lines[3];
-                _colorify.WriteLine("Game language: " + SourceLanguage);
+                _colorify.WriteLine("Game region: " + SourceLanguage);
                 System.Threading.Thread.Sleep(3000);
                 _colorify.Clear();
                 StartTranslation(logfolder, TranslateTargetLanguage, SourceLanguage);
