@@ -1,4 +1,6 @@
 # MHFTranslate
+[![Build Status](https://travis-ci.com/wroleader/MHFTranslate.svg?branch=master)](https://travis-ci.com/wroleader/MHFTranslate)   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/wroleader/MHFTranslate/blob/master/LICENSE)
+
 MHFTranslate is a small console application that automatically parses the logs from Monster Hunter Frontier and translates
 it using Google's Cloud Translation API. This is a WORK IN PROGRESS/PROOF OF CONCEPT.
 
