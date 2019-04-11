@@ -1,0 +1,4 @@
+language: csharp
+solution: SSTranslator.sln
+script:
+ - dotnet restore
