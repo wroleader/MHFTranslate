@@ -22,7 +22,7 @@ dein.Colorify
 Newtonsoft.Json
 ```
 
-Everything else is pretty self-explanatory. To use this software you need your own Google Cloud Services API key. A test API key will be provided upon request that will last a few days. Please use wisely.
+Everything else is pretty self-explanatory. To use this software you need your own Google Cloud Services API key. As the project has been abandoned, I am no longer providing an API key that can be used for this program.
 
 ## Usage
 To use MHFTranslate, make sure the game is open and that you've spent enough time in a lobby for a log to be written. Then, open the program and it will start reading & translating automatically. It currently requires to be running in a separate window, although an overlay will be considered for Version 2 if it gathers enough interest.
