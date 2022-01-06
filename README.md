@@ -1,11 +1,9 @@
 # MHFTranslate
 [![Build Status](https://travis-ci.com/wroleader/MHFTranslate.svg?branch=master)](https://travis-ci.com/wroleader/MHFTranslate)   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/wroleader/MHFTranslate/blob/master/LICENSE) ![GitHub Releases](https://img.shields.io/github/downloads/wroleader/MHFTranslate/v0.0.2/total.svg)
 
-## Warning: Project abandoned.
+## Warning: Project warming up.
 
-## Considering the news of MHF shutting down, I have decided to cancel further development of this software. The code is here and it's open for scrutiny should anyone want to use it for something. 
-
-## Thank you to everyone who supported this project.
+## IT'S ... BEING REUSED FOR SOMETHING.
 
 MHFTranslate is a small console application that automatically parses the logs from Monster Hunter Frontier and translates
 it using Google's Cloud Translation API. This is a WORK IN PROGRESS/PROOF OF CONCEPT.
