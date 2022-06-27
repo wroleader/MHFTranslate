@@ -28,10 +28,6 @@ To use MHFTranslate, make sure the game is open and that you've spent enough tim
 ## Author
 * Haru Nakamura (wroleader)
 
-## Contributors
-* SolluxKarkat (Pending invitation approval)
-
-
 -- If you would like to contribute, please send me a message. 
 First-timers and beginners are welcome. Pull requests welcome. 
 
